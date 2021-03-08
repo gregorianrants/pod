@@ -7,7 +7,9 @@
     --medium-grey: #5a668a;
     --lightest-grey: #c2cbe5;
     --white: #fff;
-    font-size: 18px;
+    --desktop-break: 1100px;
+    --root-font-size: 18;
+    font-size: calc(var(--root-font-size)* 1px);
 }
 
 *,
@@ -22,6 +24,27 @@ body{
     background-color: var(--near-black);
     color: var(--white);
     font-family: 'Chivo', sans-serif;
+    margin: 0;
+}
+
+/*39/18=*/
+@media (min-width: 700px) {
+    body{
+        --padding-left: 2.1667em;
+        height: 100vh;
+        padding-left: var(--padding-left);
+        /*background-image: url('./assets/desktop/bg-pattern-dots.svg');
+        background-repeat: no-repeat;
+        background-position: var(--padding-left) 100%;*/
+    }
+}
+
+@media (min-width: 1200px){
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 .background-image{
@@ -32,10 +55,26 @@ body{
 
 @media (min-width: 700px) {
     .background-image{
-        min-height: 600px;
-        height: 75vh;
+        /*min-height: 600px;
+        height: 75vh;*/
         background-size:  auto 100%;
         background-position: top right;
+    }
+}
+
+@media (min-width: 1200px) {
+    .background-image{
+        background-image: url("./assets/desktop/image-host.jpg");
+        background-size:  auto 100%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .background-image{
+        background-image: url("./assets/desktop/image-host.jpg");
+        /*background-size:  75% auto;*/
+       max-width: 1748px;
+        margin-left: auto;
     }
 }
 
@@ -47,43 +86,85 @@ body{
 @media (min-width: 700px){
     .container{
         background-color: transparent;
-        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        display: flex;
+        align-items: flex-start;
+
+
     }
 }
 
 .logo-container{
     text-align: center;
-    padding: 2.5em;
-
+   margin: 62px 0 0 0;
 }
+
+@media (min-width: 700px){
+   .logo-container{
+       text-align: left;
+   }
+}
+
+@media (min-width: 1200px){
+    .logo-container{
+        padding: 0;
+        margin-top: -28px;
+    }
+}
+
+
+
 /* 25px/18px = 1.3889   */
 .panel{
+    margin-top: 46px;
     padding: 0 1em ;
+    text-align: center;
 }
-
 
 @media (min-width: 700px){
     .panel{
-        max-width: 75%;
-        background-color: black;
-
-    }
-
-    .panel p, .panel h1{
+        /*max-width: 85%;*/
+        background-color: var(--near-black);
         text-align: left;
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        padding-right: 39px;
+        margin-top: 152px;
     }
 }
 
-/*mobile figma font size for heading 26px line height 38
-26px/18px = 1.444444444
-38px/18px = 2.111111
-*/
+
+
 h1{
     text-transform: uppercase;
-    font-size: 1.44rem;
-    line-height: 2.1rem;
-    text-align: center;
-    color: var(--green)
+    font-size: calc(26rem / var(--root-font-size));
+    line-height: calc(38rem / var(--root-font-size));
+    color: var(--green);
+    font-weight: 400;
+}
+
+/*48/18=2.667
+56/18=3.111
+*/
+@media (min-width: 700px) {
+    h1{
+        font-size: calc(48rem / var(--root-font-size));
+        /*font-size: 2.6rem;*/
+        line-height: 3.1rem;
+        font-weight: 400;
+        margin-top: 93px;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    h1{
+        font-size: calc(52rem / 18);
+        line-height: calc(62rem / 18);
+
+    }
 }
 
 .white{
@@ -96,10 +177,18 @@ h1{
 /*font size in figma 15px 15/18em = 0.83333,
  line height 25px 25/18 = 1.3889*/
 p {
-    text-align: center;
     color: var(--lightest-grey);
-    font-size: 0.83rem;
-    line-height: 1.4rem;
+    font-size: calc(15rem / var(--root-font-size));
+    line-height: calc(25rem / var(--root-font-size));
+}
+
+@media (min-width: 700px) {
+    p {
+        width: 25em;
+        font-size: 1em;
+        margin-top: 31px;
+        margin-bottom: 0;
+    }
 }
 
 .podcast-platforms{
@@ -110,18 +199,35 @@ p {
     list-style: none;
     padding-left: 0;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .podcast-platforms > ul > li {
     display: block;
-    margin: 0 0.8em;
+    margin: 0 23px 0 0;
     flex: 0 1 auto;
+}
+
+.podcast-platforms > ul > li:last-child {
+    margin-right: 0;
 }
 
 .podcast-platforms > ul > li > img{
     width: 100%;
     opacity: 0.9;
+    display: block;
+}
+
+@media (min-width: 700px) {
+    ul{
+        max-width: 30rem;
+    }
+
+    .podcast-platforms > ul > li > img{
+        width: auto;
+        opacity: 0.9;
+    }
 }
 
 input, button {
@@ -141,6 +247,71 @@ input{
 
 button{
     background-color: var(--green);
+}
+
+@media (min-width: 700px) {
+    input,button{
+        display: inline-block;
+        width: 40%;
+    }
+
+    form{
+        background-color: var(--darkest-grey);
+        border-radius: 1.5em;
+        max-width: 25em;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.2em;
+        order: 5;
+        margin-top: 40px;
+    }
+
+    .podcast-platforms{
+        order: 6;
+        margin-bottom: 0;
+        margin-top: 64px;
+    }
+
+    button{
+        margin-top: 0;
+    }
+
+    input{
+        background-color: transparent;
+        padding: 0;
+
+    }
+}
+
+
+@media (min-width: 700px) {
+
+
+    .background-pattern{
+        background-image: url("./assets/desktop/bg-pattern-dots.svg");
+        width: 232px;
+        height: 104px;
+        position: absolute;
+        bottom: 0px;
+        left: var(--padding-left);
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .positioned{
+        position: relative;
+    }
+
+    .background-pattern{
+        background-image: url("./assets/desktop/bg-pattern-dots.svg");
+        width: 232px;
+        height: 104px;
+        position: absolute;
+        bottom: -50px;
+        left: initial;
+        right: 0;
+    }
 }
 
 
